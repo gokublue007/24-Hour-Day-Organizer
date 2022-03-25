@@ -10,7 +10,7 @@ textarea {
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  padding: 10px;
+  padding: 0px;
 }
 
 .jumbotron {
@@ -22,6 +22,8 @@ textarea {
 }
 
 .description {
+  display: flexbox;
+  flex-wrap: wrap;
   white-space: pre-wrap;
 }
 
@@ -33,7 +35,7 @@ textarea {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid rgb(7, 7, 7);
+  border-top: 1px solid rgb(249, 248, 248);
 }
 
 .left {
@@ -44,6 +46,8 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  display: flex;
+  flex-wrap: wrap-reverse;
 }
 
 .past {
