@@ -22,7 +22,6 @@ textarea {
 }
 
 .description {
-  display: flexbox;
   flex-wrap: wrap;
   white-space: pre-wrap;
 }
