@@ -2,7 +2,7 @@
 var timeDisplayEl = document.querySelector('#currentDay');
 var saveElements = document.querySelector('.saveBtn');
 var textArea = document.querySelectorAll('.description');
-var bussinessHours = [$("#9am"), $("#10am"), $("#11am"), $("#12pm"), $("#1pm"), $("#2pm"), $("#3pm"), $("#4pm"), $("#5pm")]
+var bussinessHours = [$("#9"), $("#10"), $("#11"), $("#12"), $("#13"), $("#14"), $("#15"), $("#16"), $("#17")]
 
 //set time for top of the page and time for blocks
 function displayTime() {
@@ -13,6 +13,7 @@ function displayTime() {
 setInterval(displayTime, 1000);
 
 presentTime = moment().hour();
+console.log(presentTime)
 
 //Added function to change block colors if past present or future. I couldnt figure what I was doing wrong to get the loop going correctly
 
@@ -22,11 +23,14 @@ function changeColor() {
         bussinessHours[i].children("textarea").val(JSON.parse(localStorage.getItem(timeEl)))
         if (timeEl < presentTime) {
             bussinessHours[i].children("textarea").addClass("past");
+            console.log("past")
         }
-        else if (bussinessHours > presentTime) {
+        if (timeEl > presentTime) {
             bussinessHours[i].children("textarea").addClass("future");
+            console.log("futrue")
         } else {
             bussinessHours[i].children("textarea").addClass("present");
+            console.log("present")
         }
     }
 }
