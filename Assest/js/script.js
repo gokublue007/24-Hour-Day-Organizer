@@ -2,45 +2,42 @@
 var timeDisplayEl = document.querySelector('#currentDay');
 var saveElements = document.querySelector('.saveBtn');
 var textArea = document.querySelectorAll('.description');
-var presentTime;
-var allHours = {
-    morning: ["12:00AM, 1:00AM, 2:00AM, 3:00AM, 4:00AM, 5:00AM, 6:00AM, 7:00AM, 8:00AM"],
-    work: ["9:00AM, 10:00AM, 11:00AM, 12:00PM, 1:00PM, 2:00PM, 3:00PM, 4:00PM, 5:00PM"],
-    night: ["6:00PM, 7:00PM, 8:00PM, 9:00PM, 10:00PM, 11:00PM"]
-};
-// select all content fields
-// var nineAM = document.getElementById("9am");
-// var tenAM = document.getElementById('10am');
-// var elevenAM = document.getElementById('11am');
-// var twelvePM = document.getElementById('12pm');
-// var onePM = document.getElementById('1pm');
-// var twoPM = document.getElementById('2pm');
-// var threePM = document.getElementById('3pm');
-// var fourPM = document.getElementById('4pm');
-// var fivePM = document.getElementById('5pm');
+var bussinessHours = [$("#9am"), $("#10am"), $("#11am"), $("#12pm"), $("#1pm"), $("#2pm"), $("#3pm"), $("#4pm"), $("#5pm")]
 
+//set time for top of the page and time for blocks
 function displayTime() {
     var rightNow = moment().format("MMM Do YYYY, h:mm:ss a");
     timeDisplayEl.textContent = rightNow
 };
 
 setInterval(displayTime, 1000);
-changeColor();
+
+presentTime = moment().hour();
+
+//Added function to change block colors if past present or future. I couldnt figure what I was doing wrong to get the loop going correctly
 
 function changeColor() {
-    presentTime = moment().format("hhA")
-    console.log(presentTime)
-    if (allHours.morning.indexOf(presentTime) !== -1 || allHours.night.indexOf(presentTime) !== -1) {
-        $(".description").css("background-color", "#d3d3d3");
-    } 
-    for (var i = 0; i < allHours.work.indexOf(presentTime); i++){
-        $("#" + allHours.work[i]).css("background-color", "#ACA1A1");
-    } for (var i = 0; i < allHours.work.indexOf(presentTime); i--){
-        $("#" + allHours.work[i]).css("background-color", "#77dd77");
+    for (i = 0; i < bussinessHours.length; i++) {
+        var timeEl = bussinessHours[i].attr("id");
+        bussinessHours[i].children("textarea").val(JSON.parse(localStorage.getItem(timeEl)))
+        if (timeEl < presentTime) {
+            bussinessHours[i].children("textarea").addClass("past");
         }
-};
+        else if (bussinessHours > presentTime) {
+            bussinessHours[i].children("textarea").addClass("future");
+        } else {
+            bussinessHours[i].children("textarea").addClass("present");
+        }
+    }
+}
 
+changeColor();
 
+//called the save button to log data that gets loaded on textarea
 
-
+saveElements.addEventListener("click", function() {
+    var savedData = $(this).siblings("textarea");
+    localStorage.setItem(savedData.parent().attr("id"), JSON.stringify(savedData.val()));
+    console.log("Does it work?");
+})
 
