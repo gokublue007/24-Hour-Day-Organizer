@@ -5,9 +5,9 @@
 
 ---
 
-### Table of Contents
+### Deployment
 
-- [Description](#description)
+- [Description]()
 
 ---
 
@@ -22,5 +22,7 @@ When I click into a timeblock I can enter an event and I can click the save butt
 - Html
 - CSSs
 - JavaScript
+- Moment
+- Bootstrap
 
 [Back To The Top](#read-me-template)
