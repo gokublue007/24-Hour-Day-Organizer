@@ -21,11 +21,11 @@ function changeColor() {
     for (i = 0; i < bussinessHours.length; i++) {
         var timeEl = bussinessHours[i].attr("id");
         bussinessHours[i].children("textarea").val(JSON.parse(localStorage.getItem(timeEl)))
-        if (timeEl < presentTime) {
+        if (timeEl > presentTime) {
             bussinessHours[i].children("textarea").addClass("past");
             console.log("past")
         }
-        if (timeEl > presentTime) {
+        if (timeEl < presentTime) {
             bussinessHours[i].children("textarea").addClass("future");
             console.log("futrue")
         } else {
