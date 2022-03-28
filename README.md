@@ -20,7 +20,7 @@ When I click into a timeblock I can enter an event and I can click the save butt
 #### Technologies
 
 - Html
-- CSSs
+- CSS
 - JavaScript
 - Moment
 - Bootstrap
